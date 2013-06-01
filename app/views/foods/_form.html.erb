@@ -10,8 +10,24 @@
       </ul>
     </div>
   <% end %>
+<div class="field">
+    <%= f.label :Name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+asdf
+<%= f.fields_for :ingredients do |builder| %>
 
+  <%= builder.label :ingredient_name, "name of ingredient " %><br/>asdf
+  <%= builder.text_area :ingredient_name %>asdf
+
+<% end %>
+asdf
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
