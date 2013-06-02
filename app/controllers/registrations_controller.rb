@@ -16,6 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
     logger.debug "User's stripe id is #{@user.stripe_id}"
 
     if @user.save
+      sign_in @user
       redirect_to inventories_path, notice: "user was successfully created"
     else
       render "new"
