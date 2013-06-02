@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602002825) do
+#<<<<<<< HEAD
+#ActiveRecord::Schema.define(:version => 20130602002825) do
+#=======
+ActiveRecord::Schema.define(:version => 20130602004834) do
+#>>>>>>> 43933cafbd9c66ccf00994b56bda2fb55bbba948
 
   create_table "Inventories", :force => true do |t|
     t.integer "user_id"
@@ -47,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20130602002825) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.text     "stripe_card_token"
+    t.text     "stripe_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

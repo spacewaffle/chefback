@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
 
-  attr_accessible :email, :password, :remember_me, :stripe_card_token
+  attr_accessible :email, :password, :remember_me, :stripe_id
 
   # attr_accessible :title, :body
 
