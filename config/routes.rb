@@ -3,7 +3,7 @@ Chefback::Application.routes.draw do
     #root :to => 'registrations#new'
   end
 
-  root :to => 'ingredients#new'
+  root :to => 'foods#index'
   resources :ingredients
 
 
