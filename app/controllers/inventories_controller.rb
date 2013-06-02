@@ -15,6 +15,7 @@ class InventoriesController < ApplicationController
     @inventories.each do |e|
       e.quantity = 20
     end
+    render "index"
   end
 
   # GET /inventories/1
