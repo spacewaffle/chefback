@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Warning Level</th>
   </tr>
 <% @myinventory.inspect%>
 </br>
@@ -15,14 +15,14 @@
 </br>
 </br>
 
-<%@myinventory.each do |inv|%>
-<%@var = inv%>
-  <%@myingredients.each do |ingredient|%>
-<%if inv.ingredient_id.to_i == ingredient.id%>
-<%= ingredient.ingredient_name%>
-<%= inv.quantity%>units
-<%= inv.warning%>units
-$<%= ingredient.price_current%>
+<% @myinventory.each do |inv| %>
+<% @var = inv%>
+  <% @myingredients.each do |ingredient| %>
+<% if inv.ingredient_id.to_i == ingredient.id %>
+<%= ingredient.ingredient_name %>
+<%= inv.quantity %> units
+<%= inv.warning %> units
+$<%= ingredient.price_current %>
 </br>
 <%end%>
 <%end%>
