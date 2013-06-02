@@ -10,6 +10,13 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def replenish_all
+    @inventories = Inventory.all
+    @inventories.each do |e|
+      e.quantity = 20
+    end
+  end
+
   # GET /inventories/1
   # GET /inventories/1.json
   def show
