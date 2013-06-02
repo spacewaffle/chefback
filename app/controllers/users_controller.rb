@@ -16,6 +16,14 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
+		logger.debug("User's stripe token is #{@user.stripe_id}")
+		customer = Stripe::Customer.create(
+		  card: @user.stripe_id,
+		  description: @user.email
+		)
+		@user.stripe_id = customer.id
+		logger.debug("User's stripe is is #{@user.stripe_id}")
+
 		if @user.save
 			redirect_to @user, notice: "user was successfully created"
 		else
