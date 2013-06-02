@@ -1,32 +1,24 @@
 <h1>Listing inventories</h1>
 
-<table>
+<table class="all">
   <tr>
     <th>Name</th>
     <th>Quantity</th>
     <th>Warning Level</th>
+    <th>Market Price</th>
   </tr>
-<% @myinventory.inspect%>
-</br>
-</br>
-<% @myingredients.inspect%>
-</br>
-</br>
-</br>
-</br>
-
 <% @myinventory.each do |inv| %>
-<% @var = inv%>
   <% @myingredients.each do |ingredient| %>
-<% if inv.ingredient_id.to_i == ingredient.id %>
-<%= ingredient.ingredient_name %>
-<%= inv.quantity %> units
-<%= inv.warning %> units
-$<%= ingredient.price_current %>
-</br>
-<%end%>
-<%end%>
-<%end%>
+    <tr>
+      <% if inv.ingredient_id.to_i == ingredient.id %>
+        <td><%= ingredient.ingredient_name %></td>
+        <td><%= inv.quantity %> units</td>
+        <td><%= inv.warning %> units</td>
+        <td><%= number_to_currency(ingredient.market_price.to_f/100, :precision => 2, :strip_insignificant_zeros => true) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>
 <p>
 
   <%= form_tag "/inventory/replenish_all", method: "post" do %>
