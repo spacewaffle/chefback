@@ -10,6 +10,7 @@ gem 'devise'
 gem 'stripe'
 gem 'nested_form'
 gem 'thin'
+gem 'json'
 
 group :development do
   gem 'quiet_assets'

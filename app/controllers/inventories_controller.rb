@@ -13,14 +13,25 @@ class InventoriesController < ApplicationController
 
   def replenish_all
     @inventories = Inventory.all
+    @order = []
+    max = 20
+    incr = 0
+    charge = 0
     @inventories.each do |e|
-      logger.debug "quantity is #{e.quantity}"
-      e.quantity = 20
+      temp_order = {}
+      temp_order[:id] = incr +=1
+      temp_order[:name] = e.ingredient.name
+      temp_order[:quantity] = e.quantity
+      temp_order[:price] = e.ingredient.price
+      @order.push temp_order
+
+      charge += (max - e.quantity) * e.ingredient.price
+      e.quantity = max
       e.save
-      logger.debug "quantity is #{e.quantity}"
     end
+    @order.save
     Stripe::Charge.create(
-          :amount => 200000, # in cents
+          :amount => charge, # in cents
           :currency => "usd",
           :customer => current_user.stripe_id
     )
