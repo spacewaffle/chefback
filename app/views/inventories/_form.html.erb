@@ -1,4 +1,4 @@
-<%= form_for(@inventory) do |f| %>
+<%= nested_form_for(@inventory) do |f| %>
   <% if @inventory.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
@@ -10,27 +10,25 @@
       </ul>
     </div>
   <% end %>
-  <%=@inventory.inspect%>
+  <%=@inventories.inspect%>
+<% if @inventories %>
+<% @inventories.each do |item|%>
+<%=item.quantity%>
+<%%>
+<div class="field"> 
+  <%= f.label :set_warning_amt %>
+  <%= f.text_field :warning %>
+</div>
+<%end%>
+<%else%>
+<%= "you have no inventories. go to foods and add some ingredients"%>
+<div class="field"> 
 
-  <% if @inventory.nil? %>
-    <p>Inventory appears to be empty!</p>
-  <% else %>
-    <table>
-      <tr>
-        <td>Inventory Item</td>
-        <td>Quantity</td>
-        <td>Status</td>
-      </tr>
-    <% @inventory.each do |i| %>
-      <tr>
-        <td><%#get ingredient name %></td>
-        <td><%= i.quantity %></td>
-        <td><% if i.quantity < i.warning %>
-          <%= oh noooo! %>
-        <% end %></td>
-    <% end %>
-    </tr></table>
-  <% end %>
+  <%= f.label :set_warning_amt %>
+  <%= f.text_field :warning %>
+</div>
+<%end%>
+
   <div class="actions">
     <%= f.submit %>
   </div>

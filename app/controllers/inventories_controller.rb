@@ -4,11 +4,18 @@ class InventoriesController < ApplicationController
 
   def index
     @inventories = Inventory.all
-
-    respond_to do |format|
+    @myinventory = Inventory.find_all_by_user_id(current_user.id)
+    @myingredients = Ingredient.find_all_by_user_id(current_user.id)
+    
+        respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @inventories }
+
+
+
     end
+
+    
   end
 
   def replenish_all
@@ -42,7 +49,7 @@ class InventoriesController < ApplicationController
   # GET /inventories/new.json
   def new
     @inventory = Inventory.new
-    @inventories = Inventory.find_by_user_id(currentuser.id)
+    @inventories = Inventory.find_by_user_id(current_user.id)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @inventory }
@@ -68,6 +75,8 @@ class InventoriesController < ApplicationController
         format.json { render json: @inventory.errors, status: :unprocessable_entity }
       end
     end
+    
+
   end
 
   # PUT /inventories/1

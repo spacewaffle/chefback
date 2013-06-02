@@ -1,7 +1,7 @@
 class Inventory < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :user
-  has_many :ingredients
+  belongs_to :ingredient
 	attr_accessible :ingredient_name, :quantity, :low_quantity, :user_id
 
 #<<<<<<< HEAD

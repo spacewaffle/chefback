@@ -42,10 +42,21 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(params[:food])
 
+
+
     respond_to do |format|
       if @food.save
         format.html { redirect_to @food, notice: 'Food was successfully created.' }
         format.json { render json: @food, status: :created, location: @food }
+        @ingredients = Ingredient.all
+    @ingredients.each do |item|   
+      if item.user_id == current_user.id
+      @inventory = Inventory.new(
+        user_id: current_user.id,
+        ingredient_id: item.id)
+      @inventory.save
+      end
+    end
       else
         format.html { render action: "new" }
         format.json { render json: @food.errors, status: :unprocessable_entity }

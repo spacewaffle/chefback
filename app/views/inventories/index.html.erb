@@ -6,20 +6,23 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @inventories.each do |inventory| %>
-  <tr>
-    <td><%= link_to 'Show', inventory %></td>
-    <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
-    <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-
-
+<%= @myinventory.inspect%>
+</br>
+</br>
+<%= @myingredients.inspect%>
+</br>
+</br>
+</br>
+</br>
+<%@myinventory.each do |inventory|%>
+  <%@myingredients.each do |ingredient|%>
+<%if inventory.ingredient_id.to_i == ingredient.id%>
+<%= ingredient.ingredient_name%>
+<%= inventory.quantity%>
+<%= inventory.warning%>
+<%end%>
+<%end%>
+<%end%>
 <p>
   User <%= current_user.email %> should be able to replenish inventories here with one click!
   <%= form_tag "/inventory/replenish_all", method: "post" do %>
