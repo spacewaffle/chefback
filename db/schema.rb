@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602125018) do
+ActiveRecord::Schema.define(:version => 20130602131859) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,14 +58,14 @@ ActiveRecord::Schema.define(:version => 20130602125018) do
     t.string  "ingredient_name"
     t.integer "quantity_used",   :default => 5
     t.integer "price",           :default => 500
-    t.integer "price_current",   :default => 500
+    t.integer "market_price",    :default => 500
   end
 
   create_table "inventories", :force => true do |t|
     t.integer "user_id"
     t.integer "ingredient_id", :limit => 255
     t.integer "quantity",                     :default => 20
-    t.integer "warning",                      :default => 0
+    t.integer "warning",                      :default => 5
   end
 
   create_table "orders", :force => true do |t|
