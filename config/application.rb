@@ -64,3 +64,11 @@ module Chefback
     config.assets.version = '1.0'
   end
 end
+module AssetsInitializers
+  class Railtie < Rails::Railtie
+    initializer "assets_initializers.initialize_rails",
+                :group => :assets do |app|
+      require "#{Rails.root}/config/initializers/stripe.rb"
+    end
+  end
+end
