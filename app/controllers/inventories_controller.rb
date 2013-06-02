@@ -1,6 +1,7 @@
 class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
+
   def index
     @inventories = Inventory.all
 

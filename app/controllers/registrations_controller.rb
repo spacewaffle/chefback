@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_filter :authenticate_user!, :only => [:new, :destroy]
   def new
     super
   end
