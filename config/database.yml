@@ -26,6 +26,7 @@ test:
 
 production:
   adapter: postgresql
-  database: production_db
+  database: chefback_production
   pool: 5
   timeout: 5000
+  username: jon
