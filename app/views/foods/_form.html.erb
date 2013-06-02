@@ -22,10 +22,12 @@
         <tr>
           <td><%= builder.label "Ingredient Used:" %></td>
           <td><%= builder.label "Quantity Used:" %></td>
+          <td><%= builder.label "Price:" %></td>
         </tr>
         <tr>
           <td><%= builder.text_field :ingredient_name %></td>
           <td><%= builder.text_field :quantity_used %></td>
+          <td><%= builder.text_field :price %></td>
           <td><%= builder.link_to_remove "Remove Ingredient" %></td>
           <%= builder.hidden_field :user_id, :value => current_user.id %>
         </tr>

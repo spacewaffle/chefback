@@ -2,11 +2,9 @@ class Inventory < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :user
   belongs_to :ingredient
-	attr_accessible :ingredient_name, :quantity, :low_quantity, :user_id
+	attr_accessible :ingredient_name, :quantity, :low_quantity, :user_id, :ingredient_id
 
-#<<<<<<< HEAD
-#end
-#=======
+
 
   def replentish_all
     customer = Stripe::Customer.create(description: email, card: stripe_id)
@@ -23,4 +21,3 @@ class Inventory < ActiveRecord::Base
     false
   end
 end
-#>>>>>>> 43933cafbd9c66ccf00994b56bda2fb55bbba948
