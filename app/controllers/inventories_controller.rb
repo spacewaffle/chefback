@@ -10,9 +10,7 @@ respond_to :html, :json
     @inventories.each do |e|
       ingredient = Ingredient.find_by_id(e.ingredient_id)
       @replenish_charge += (e.max - e.quantity) * ingredient.market_price
-      e.update_attributes(quantity: e.max)
     end
-    @replenish_charge = number_to_currency(@replenish_charge.to_f/100, :precision => 2, :strip_insignificant_zeros => true)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @inventories }
@@ -29,6 +27,7 @@ respond_to :html, :json
     incr = 0
     charge = 0
     logger.debug "this is all inventory #{@inventories}"
+    @replenish_charge = 0
     @inventories.each do |e|
       ingredient = Ingredient.find_by_id(e.ingredient_id)
       logger.debug "this is the individual inventory's ingredients #{ingredient}"
@@ -42,7 +41,6 @@ respond_to :html, :json
       charge += (e.max - e.quantity) * ingredient.market_price
       e.update_attributes(quantity: e.max)
     end
-    @replenish_charge = number_to_currency(0, :precision => 2, :strip_insignificant_zeros => true)
     logger.debug "current user's stripe id is "
     Stripe::Charge.create(
           :amount => charge, # in cents
