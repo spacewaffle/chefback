@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+#authCol {
+  margin-right: 20% ;
+}
+#landCol {
+  float: right ;
+  width: 20% ;
+}

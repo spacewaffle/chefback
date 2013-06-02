@@ -3,10 +3,11 @@ Chefback::Application.routes.draw do
     #root :to => 'registrations#new'
   end
 
-  root :to => 'foods#index'
+  root :to => 'inventories#index'
   resources :ingredients
-
-
+  resources :welcome
+  match '/welcome' => 'welcome#index', as: 'welcome/index'
+  match '/welcome' => 'welcome#show', as: 'welcome/show'
   resources :inventories
   match '/inventory/replenish_all', to: 'inventories#replenish_all'
 
