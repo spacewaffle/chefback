@@ -5,7 +5,9 @@ class Inventory < ActiveRecord::Base
 	attr_accessible :ingredient_name, :quantity, :low_quantity, 
                   :user_id, :ingredient_id, :warning
 
-
+  def max
+    20
+  end
 
   def replentish_all
     customer = Stripe::Customer.create(description: email, card: stripe_id)

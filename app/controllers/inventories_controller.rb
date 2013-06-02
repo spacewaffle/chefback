@@ -6,43 +6,51 @@ respond_to :html, :json
     @inventories = Inventory.all
     @myinventory = Inventory.find_all_by_user_id(current_user.id)
     @myingredients = Ingredient.find_all_by_user_id(current_user.id)
-    
-        respond_to do |format|
+    @replenish_charge = 0
+    @inventories.each do |e|
+      ingredient = Ingredient.find_by_id(e.ingredient_id)
+      @replenish_charge += (e.max - e.quantity) * ingredient.market_price
+      e.update_attributes(quantity: e.max)
+    end
+    @replenish_charge = number_to_currency(@replenish_charge.to_f/100, :precision => 2, :strip_insignificant_zeros => true)
+    respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @inventories }
-
-
-
     end
-
-    
   end
 
   def replenish_all
     @inventories = Inventory.all
-    @order = []
-    max = 20
+    @myinventory = Inventory.find_all_by_user_id(current_user.id)
+    @myingredients = Ingredient.find_all_by_user_id(current_user.id)
+    Stripe.api_key = ENV['Stripe.api_key']
+   
+    @order = Order.new(items: [])
     incr = 0
     charge = 0
+    logger.debug "this is all inventory #{@inventories}"
     @inventories.each do |e|
+      ingredient = Ingredient.find_by_id(e.ingredient_id)
+      logger.debug "this is the individual inventory's ingredients #{ingredient}"
       temp_order = {}
       temp_order[:id] = incr +=1
-      temp_order[:name] = e.ingredient.name
+      temp_order[:name] = ingredient.ingredient_name
       temp_order[:quantity] = e.quantity
-      temp_order[:price] = e.ingredient.price
-      @order.push temp_order
+      temp_order[:price] = ingredient.market_price
+      @order[:items].push temp_order
 
-      charge += (max - e.quantity) * e.ingredient.price
-      e.quantity = max
-      e.save
+      charge += (e.max - e.quantity) * ingredient.market_price
+      e.update_attributes(quantity: e.max)
     end
-    @order.save
+    @replenish_charge = number_to_currency(0, :precision => 2, :strip_insignificant_zeros => true)
+    logger.debug "current user's stripe id is "
     Stripe::Charge.create(
           :amount => charge, # in cents
           :currency => "usd",
           :customer => current_user.stripe_id
     )
-    render "index"
+    @order.save
+    redirect_to "index"
   end
 
   # GET /inventories/1

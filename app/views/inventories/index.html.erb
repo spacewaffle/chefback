@@ -23,6 +23,7 @@
 
   <%= form_tag "/inventory/replenish_all", method: "post" do %>
     <%= submit_tag "Replenish all" %>
+    <span>Cost: <%= @replenish_charge %></span>
   <% end %>
 </p>
 
