@@ -25,7 +25,7 @@ class InventoriesController < ApplicationController
   # GET /inventories/new.json
   def new
     @inventory = Inventory.new
-
+    @inventories = Inventory.find_by_user_id(currentuser.id)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @inventory }

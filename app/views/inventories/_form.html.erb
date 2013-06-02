@@ -10,7 +10,27 @@
       </ul>
     </div>
   <% end %>
+  <%=@inventory.inspect%>
 
+  <% if @inventory.nil? %>
+    <p>Inventory appears to be empty!</p>
+  <% else %>
+    <table>
+      <tr>
+        <td>Inventory Item</td>
+        <td>Quantity</td>
+        <td>Status</td>
+      </tr>
+    <% @inventory.each do |i| %>
+      <tr>
+        <td><%#get ingredient name %></td>
+        <td><%= i.quantity %></td>
+        <td><% if i.quantity < i.warning %>
+          <%= oh noooo! %>
+        <% end %></td>
+    <% end %>
+    </tr></table>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

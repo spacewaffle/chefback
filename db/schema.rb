@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-#<<<<<<< HEAD
-#ActiveRecord::Schema.define(:version => 20130602002825) do
-#=======
 ActiveRecord::Schema.define(:version => 20130602004834) do
-#>>>>>>> 43933cafbd9c66ccf00994b56bda2fb55bbba948
 
   create_table "Inventories", :force => true do |t|
     t.integer "user_id"

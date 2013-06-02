@@ -49,6 +49,7 @@ GEM
       warden (~> 1.2.1)
     erubis (2.7.0)
     eventmachine (1.0.1)
+    eventmachine (1.0.1-x86-mingw32)
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.2)
