@@ -1,6 +1,7 @@
 class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
+
   def index
     @inventories = Inventory.all
 
@@ -8,6 +9,22 @@ class InventoriesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @inventories }
     end
+  end
+
+  def replenish_all
+    @inventories = Inventory.all
+    @inventories.each do |e|
+      logger.debug "quantity is #{e.quantity}"
+      e.quantity = 20
+      e.save
+      logger.debug "quantity is #{e.quantity}"
+      Stripe::Charge.create(
+          :amount => 100000, # in cents
+          :currency => "usd",
+          :customer => current_user.stripe_id
+      )
+    end
+    render "index"
   end
 
   # GET /inventories/1

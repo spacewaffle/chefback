@@ -17,7 +17,14 @@
 </table>
 
 <br />
-User should be able to replenish inventories here with one click!
 
+
+
+<p>
+  User <%= current_user.email %> should be able to replenish inventories here with one click!
+  <%= form_tag "/inventory/replenish_all", method: "post" do %>
+    <%= submit_tag "Replenish all" %>
+  <% end %>
+</p>
 
 <%= link_to 'New Inventory', new_inventory_path %>

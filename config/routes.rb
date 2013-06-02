@@ -3,6 +3,7 @@ Chefback::Application.routes.draw do
 
 
   resources :inventories
+  match '/inventory/replenish_all', to: 'inventories#replenish_all'
 
 
   resources :foods
