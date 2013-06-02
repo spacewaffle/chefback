@@ -48,7 +48,7 @@ respond_to :html, :json
           :customer => current_user.stripe_id
     )
     @order.save
-    redirect_to "index"
+    render "index"
   end
 
   # GET /inventories/1

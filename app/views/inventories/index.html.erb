@@ -23,7 +23,7 @@
 
   <%= form_tag "/inventory/replenish_all", method: "post" do %>
     <%= submit_tag "Replenish all" %>
-    <span>Cost: <%= number_to_currency(@replenish_charge.to_f/100, :precision => 2, :strip_insignificant_zeros => true) %></span>
+    <span class="cost">Cost: <%= number_to_currency(@replenish_charge.to_f/100, :precision => 2, :strip_insignificant_zeros => true) %></span>
   <% end %>
 </p>
 

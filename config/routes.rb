@@ -9,7 +9,7 @@ Chefback::Application.routes.draw do
   match '/welcome' => 'welcome#index', as: 'welcome/index'
   match '/welcome' => 'welcome#show', as: 'welcome/show'
   resources :inventories
-  match '/inventory/replenish_all', to: 'inventories#replenish_all'
+  match '/inventories/replenish_all', to: 'inventories#replenish_all'
 
 
   resources :foods
