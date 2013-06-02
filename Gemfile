@@ -11,6 +11,7 @@ gem 'stripe'
 gem 'nested_form'
 gem 'thin'
 gem 'json'
+gem 'activeadmin'
 
 group :development do
   gem 'quiet_assets'
