@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130602043932) do
 
-  create_table "Inventories", :force => true do |t|
-    t.integer "user_id"
-    t.string  "ingredient_id"
-    t.integer "quantity"
-    t.integer "warning"
-  end
-
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -54,17 +47,25 @@ ActiveRecord::Schema.define(:version => 20130602043932) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "foods", :force => true do |t|
-    t.string "user_id"
-    t.string "ingredient_name"
-    t.string "name"
+    t.integer "user_id",         :limit => 255
+    t.string  "ingredient_name"
+    t.string  "name"
   end
 
   create_table "ingredients", :force => true do |t|
     t.integer "user_id"
     t.integer "food_id"
     t.string  "ingredient_name"
-    t.integer "quantity_used"
-    t.integer "price"
+    t.integer "quantity_used",   :default => 5
+    t.integer "price",           :default => 5
+    t.integer "price_current",   :default => 5
+  end
+
+  create_table "inventories", :force => true do |t|
+    t.integer "user_id"
+    t.integer "ingredient_id", :limit => 255
+    t.integer "quantity",                     :default => 20
+    t.integer "warning",                      :default => 0
   end
 
   create_table "orders", :force => true do |t|
