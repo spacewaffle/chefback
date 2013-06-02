@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602043932) do
+ActiveRecord::Schema.define(:version => 20130602125018) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20130602043932) do
     t.integer "food_id"
     t.string  "ingredient_name"
     t.integer "quantity_used",   :default => 5
-    t.integer "price",           :default => 5
-    t.integer "price_current",   :default => 5
+    t.integer "price",           :default => 500
+    t.integer "price_current",   :default => 500
   end
 
   create_table "inventories", :force => true do |t|
