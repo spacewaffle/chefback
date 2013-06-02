@@ -18,12 +18,12 @@ class InventoriesController < ApplicationController
       e.quantity = 20
       e.save
       logger.debug "quantity is #{e.quantity}"
-      Stripe::Charge.create(
-          :amount => 100000, # in cents
+    end
+    Stripe::Charge.create(
+          :amount => 200000, # in cents
           :currency => "usd",
           :customer => current_user.stripe_id
-      )
-    end
+    )
     render "index"
   end
 
