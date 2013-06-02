@@ -15,3 +15,5 @@
 //= require bootstrap
 //= require_tree .
 //= require jquery_nested_form
+//= require jquery.purr
+//= require best_in_place

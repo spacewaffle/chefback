@@ -13,6 +13,8 @@ gem 'thin'
 gem 'json'
 gem 'activeadmin'
 gem 'bootstrap-sass', '~> 2.3.1.3'
+gem 'best_in_place'
+
 gem 'sass-rails',   '~> 3.2.3'
 group :development do
   gem 'quiet_assets'

@@ -1,7 +1,7 @@
 class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
-
+respond_to :html, :json
   def index
     @inventories = Inventory.all
     @myinventory = Inventory.find_all_by_user_id(current_user.id)
@@ -94,7 +94,6 @@ class InventoriesController < ApplicationController
   # PUT /inventories/1.json
   def update
     @inventory = Inventory.find(params[:id])
-
     respond_to do |format|
       if @inventory.update_attributes(params[:inventory])
         format.html { redirect_to @inventory, notice: 'Inventory was successfully updated.' }

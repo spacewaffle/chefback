@@ -10,21 +10,30 @@
       </ul>
     </div>
   <% end %>
-  <%=@inventories.inspect%>
-<% if @inventories %>
-<% @inventories.each do |item|%>
-<%=item.quantity%>
-<%%>
+<%= @myinventory.inspect%>
+</br>
+</br>
+<%= @myingredients.inspect%>
+</br>
+</br>
+</br>
+</br>
+
 <div class="field"> 
-  <%= f.label :set_warning_amt %>
+  <%= f.label :warning %>
   <%= f.text_field :warning %>
-</div>
+</div><%= ingredient.price_current%>
+</br>
+<%end%>
+<%end%>
+<%end%>
+
 <%end%>
 <%else%>
 <%= "you have no inventories. go to foods and add some ingredients"%>
 <div class="field"> 
 
-  <%= f.label :set_warning_amt %>
+  <%= f.label :warning %>
   <%= f.text_field :warning %>
 </div>
 <%end%>
