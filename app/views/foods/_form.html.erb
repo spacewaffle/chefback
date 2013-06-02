@@ -1,4 +1,4 @@
-<%= form_for(@food) do |f| %>
+<%= nested_form_for(@food) do |f| %>
   <% if @food.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
@@ -10,24 +10,30 @@
       </ul>
     </div>
   <% end %>
-<div class="field">
-    <%= f.label :Name %>
+
+  <div class="field">
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.number_field :price %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>  
+  <div>
+    <%= f.fields_for :ingredients do |builder| %>
+      <table>
+        <tr>
+          <td><%= builder.label "Ingredient Used:" %></td>
+          <td><%= builder.label "Quantity Used:" %></td>
+        </tr>
+        <tr>
+          <td><%= builder.text_field :ingredient_name %></td>
+          <td><%= builder.text_field :quantity_used %></td>
+          <td><%= builder.link_to_remove "Remove Ingredient" %></td>
+          <%= builder.hidden_field :user_id, :value => current_user.id %>
+        </tr>
+      </table>
+    <% end %>
+    <p><%= f.link_to_add "Add an Ingredient", :ingredients %></p>
   </div>
-asdf
-<%= f.fields_for :ingredients do |builder| %>
-
-  <%= builder.label :ingredient_name, "name of ingredient " %><br/>asdf
-  <%= builder.text_area :ingredient_name %>asdf
-
-<% end %>
-asdf
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :Submit, {:class=>'btn'} %>
   </div>
 <% end %>
-

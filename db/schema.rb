@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601224702) do
+ActiveRecord::Schema.define(:version => 20130602002825) do
 
   create_table "Inventories", :force => true do |t|
     t.integer "user_id"
@@ -21,10 +21,9 @@ ActiveRecord::Schema.define(:version => 20130601224702) do
   end
 
   create_table "foods", :force => true do |t|
-    t.string  "user_id"
-    t.string  "ingredient_name"
-    t.string  "name"
-    t.integer "price"
+    t.string "user_id"
+    t.string "ingredient_name"
+    t.string "name"
   end
 
   create_table "ingredients", :force => true do |t|
@@ -32,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130601224702) do
     t.integer "food_id"
     t.string  "ingredient_name"
     t.integer "quantity_used"
+    t.integer "price"
   end
 
   create_table "users", :force => true do |t|
