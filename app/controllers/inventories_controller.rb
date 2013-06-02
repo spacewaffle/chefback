@@ -13,7 +13,10 @@ class InventoriesController < ApplicationController
   def replenish_all
     @inventories = Inventory.all
     @inventories.each do |e|
+      logger.debug "quantity is #{e.quantity}"
       e.quantity = 20
+      e.save
+      logger.debug "quantity is #{e.quantity}"
     end
     render "index"
   end

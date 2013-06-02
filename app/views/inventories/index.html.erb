@@ -21,7 +21,7 @@
 
 <p>
   User <%= current_user ? current_user.name : "Anon" %> should be able to replenish inventories here with one click!
-  <%= form_tag "inventory/replenish_all", method: "post" do %>
+  <%= form_tag "/inventory/replenish_all", method: "post" do %>
     <%= submit_tag "Replenish all" %>
   <% end %>
 </p>
