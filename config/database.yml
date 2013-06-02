@@ -29,4 +29,3 @@ production:
   database: production_db
   pool: 5
   timeout: 5000
-  
