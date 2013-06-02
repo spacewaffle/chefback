@@ -1,13 +1,16 @@
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-  subscription.setupForm()
+  stripe_user.setupForm()
 
-subscription =
+stripe_user =
   setupForm: ->
     $('#new_user').submit ->
       #$('input[type=submit]').attr('disabled', true)
-      subscription.processCard()
-      false
+      if $('#card_number').length
+        stripe_user.processCard()
+        false
+      else
+        true
   
   processCard: ->
     card =
@@ -15,7 +18,7 @@ subscription =
       cvc: $('#card_code').val()
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()
-    Stripe.createToken(card, subscription.handleStripeResponse)
+    Stripe.createToken(card, stripe_user.handleStripeResponse)
     console.log("processing card");
     console.log(card);
   
